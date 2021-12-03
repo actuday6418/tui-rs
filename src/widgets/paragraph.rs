@@ -193,8 +193,8 @@ impl<'a> Widget for Paragraph<'a> {
                 break;
             }
         }
-        let mut file = std::fs::OpenOptions::new().write(true).append(true).open("log.txt").unwrap();
+        let mut file = std::fs::File::create("/tmp/tuitmp.txt").unwrap();
         use std::io::Write;
-        write!(&mut file,"{}@",y.to_string()).unwrap();
+        write!(&mut file,"{}",y.to_string()).unwrap();
     }
 }
