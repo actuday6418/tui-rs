@@ -187,6 +187,7 @@ impl<'a> Widget for Paragraph<'a> {
                         .set_style(*style);
                     x += symbol.width() as u16;
                 }
+            }
             y += 1;
             if y >= text_area.height + self.scroll.0 {
                 break;
