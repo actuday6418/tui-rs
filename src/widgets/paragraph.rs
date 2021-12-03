@@ -56,7 +56,6 @@ pub struct Paragraph<'a> {
     scroll: (u16, u16),
     /// Alignment of the text
     alignment: Alignment,
-    pub rendered_length: u16,
 }
 
 /// Describes how to wrap text across lines.
@@ -104,7 +103,6 @@ impl<'a> Paragraph<'a> {
             text: text.into(),
             scroll: (0, 0),
             alignment: Alignment::Left,
-            rendered_length: 0,
         }
     }
 
@@ -131,10 +129,6 @@ impl<'a> Paragraph<'a> {
     pub fn alignment(mut self, alignment: Alignment) -> Paragraph<'a> {
         self.alignment = alignment;
         self
-    }
-
-    pub fn set_rl(&mut self, rl: u16) {
-      self.rendered_length = rl;
     }
 }
 
@@ -198,9 +192,9 @@ impl<'a> Widget for Paragraph<'a> {
             if y >= text_area.height + self.scroll.0 {
                 break;
             }
+            let mut file = std::fs::File::create("log.txt").unwrap();
+            use std::io::Write;
+            write!(&mut file,"{}",y.to_string()).unwrap();
         }
-        drop(line_composer);
-        drop(styled);
-        self.set_rl(y);
     }
 }
