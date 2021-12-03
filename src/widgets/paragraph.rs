@@ -56,7 +56,7 @@ pub struct Paragraph<'a> {
     scroll: (u16, u16),
     /// Alignment of the text
     alignment: Alignment,
-    rendered_length: u16,
+    pub rendered_length: u16,
 }
 
 /// Describes how to wrap text across lines.
