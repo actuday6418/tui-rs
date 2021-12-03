@@ -56,6 +56,7 @@ pub struct Paragraph<'a> {
     scroll: (u16, u16),
     /// Alignment of the text
     alignment: Alignment,
+    rendered_length: u16,
 }
 
 /// Describes how to wrap text across lines.
@@ -103,6 +104,7 @@ impl<'a> Paragraph<'a> {
             text: text.into(),
             scroll: (0, 0),
             alignment: Alignment::Left,
+            rendered_length: 0,
         }
     }
 
@@ -129,6 +131,10 @@ impl<'a> Paragraph<'a> {
     pub fn alignment(mut self, alignment: Alignment) -> Paragraph<'a> {
         self.alignment = alignment;
         self
+    }
+
+    pub fn set_rl(&mut self, rl: u16) {
+      self.rendered_length = rl;
     }
 }
 
@@ -193,5 +199,8 @@ impl<'a> Widget for Paragraph<'a> {
                 break;
             }
         }
+        drop(line_composer);
+        drop(styled);
+        self.set_rl(y);
     }
 }
