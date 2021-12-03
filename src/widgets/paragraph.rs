@@ -194,7 +194,7 @@ impl<'a> Widget for Paragraph<'a> {
             }
             let mut file = std::fs::OpenOptions::new().write(true).append(true).open("log.txt").unwrap();
             use std::io::Write;
-            write!(&mut file,"{}",y.to_string()).unwrap();
+            write!(&mut file,"{}@",y.to_string()).unwrap();
         }
     }
 }
