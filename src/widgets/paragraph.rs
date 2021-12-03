@@ -171,7 +171,7 @@ impl<'a> Widget for Paragraph<'a> {
             }
             line_composer
         };
-        let mut y = 0;
+        let mut y = self.scroll.0;
         while let Some((current_line, current_line_width)) = line_composer.next_line() {
             if y >= self.scroll.0 {
                 let mut x = get_line_offset(current_line_width, text_area.width, self.alignment);
