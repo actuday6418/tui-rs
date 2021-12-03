@@ -192,7 +192,7 @@ impl<'a> Widget for Paragraph<'a> {
             if y >= text_area.height + self.scroll.0 {
                 break;
             }
-            let mut file = std::fs::File::create("log.txt").unwrap();
+            let mut file = std::fs::OpenOptions::new().write(true).append(true).open("log.txt").unwrap();
             use std::io::Write;
             write!(&mut file,"{}",y.to_string()).unwrap();
         }
